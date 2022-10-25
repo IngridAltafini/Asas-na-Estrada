@@ -9,7 +9,7 @@ const usersRepository = new UsersRepository();
 
 class UsersController {
   async createUsers(request, response) {
-    const { name, age, email, telephone, password, cep } = request.body;
+    const { name, email, telephone, password, cep } = request.body;
 
     const createUser = new CreateUsersService(usersRepository);
 

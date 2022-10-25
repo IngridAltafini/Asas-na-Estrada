@@ -3,19 +3,26 @@ const nodemailer = require('nodemailer');
 class MailProvider {
   constructor() {
     this.transport = nodemailer.createTransport({
-      host: 'smtp.mailtrap.io',
-      port: 2525,
+      host: process.env.MAIL_HOST,
+      port: process.env.MAIL_PASS,
+      debug: true,
+      logger: true,
+      tls: {
+        secure: false,
+        ignoreTLS: true,
+        rejectUnauthorized: false,
+      },
       auth: {
-        user: 'cbdf13edc8dbcb',
-        pass: 'ea623885d5071a',
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS,
       },
     });
   }
 
-  async sendMail({ template, to, subject }) {
+  async sendMail({ template, email, subject }) {
     await this.transport.sendMail({
-      from: 'NoReply <noreply@asasnaestrada.com.br>',
-      to,
+      from: `NoReply <${process.env.MAIL_URL}>`,
+      to: email,
       subject,
       html: template,
     });
