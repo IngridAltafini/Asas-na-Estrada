@@ -7,7 +7,7 @@ import { RiFacebookCircleFill } from 'react-icons/ri';
 
 import { FcGoogle } from 'react-icons/fc';
 
-import { Container, Background, Content } from './styles';
+import { Container, Background, Content, BorderForm, Form } from './styles';
 import { Link } from 'react-router-dom';
 
 export const SignIn = () => {
@@ -32,41 +32,48 @@ export const SignIn = () => {
   return (
     <Container>
       <Background>
-        <h1>De moto você não aprecia a paisagem,</h1>
+        <h1>De moto você não</h1>
+        <p>aprecia a paisagem,</p>
         <h2>Você faz parte dela!</h2>
         <img src={background} alt="imagem complementar" />
       </Background>
 
       <Content>
-        <form>
-          <h1>Login:</h1>
-          <h2>Realize seu login</h2>
+        <BorderForm>
+          <Form>
+            <h1>Login:</h1>
+            <h2>Realize seu login</h2>
 
-          <input type="text" placeholder="E-mail" />
-          <input type="password" placeholder="Senha" />
-          <h4>
-            Esqueceu sua senha?
-            <a href="forgot">Esqueci senha</a>
-          </h4>
+            <input type="text" placeholder="E-mail" />
+            <input type="password" placeholder="Senha" />
+            <h4>
+              Esqueceu sua senha?
+              <a href="forgot">Esqueci senha</a>
+            </h4>
 
-          <button type="button">Conecte-se</button>
+            <button type="button">Conecte-se</button>
 
-          <h3>ou</h3>
+            <p>ou</p>
 
-          <button className="btn2" type="button" onClick={handleFacebookSignIn}>
-            <RiFacebookCircleFill />
-            Continuar com o Facebook
-          </button>
-          <button className="btn3" type="button" onClick={handleGoogleSignIn}>
-            <FcGoogle />
-            Continuar com o Google
-          </button>
-        </form>
+            <button
+              className="btn2"
+              type="button"
+              onClick={handleFacebookSignIn}
+            >
+              <RiFacebookCircleFill />
+              Continuar com o Facebook
+            </button>
+            <button className="btn3" type="button" onClick={handleGoogleSignIn}>
+              <FcGoogle />
+              Continuar com o Google
+            </button>
 
-        <h4>
-          Não faz parte de Asas na estrada?
-          <Link to="/sign-up">Cadastre-se</Link>
-        </h4>
+            <strong>
+              Não faz parte de Asas na estrada?
+              <Link to="/sign-up">Cadastre-se</Link>
+            </strong>
+          </Form>
+        </BorderForm>
       </Content>
     </Container>
   );

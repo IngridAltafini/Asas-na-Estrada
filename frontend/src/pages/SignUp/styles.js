@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 140vh;
+  height: 130vh;
 
   display: flex;
   align-items: stretch;
@@ -21,7 +21,7 @@ export const Background = styled.div`
     color: ${({ theme }) => theme.text};
 
     margin-top: 80px;
-    margin-left: 32%;
+    margin-left: 260px;
   }
 
   > p {
@@ -32,7 +32,7 @@ export const Background = styled.div`
     font-size: 40px;
     color: ${({ theme }) => theme.text};
 
-    margin-left: 30.5%;
+    margin-left: 248px;
     font-weight: 700;
   }
 
@@ -44,7 +44,7 @@ export const Background = styled.div`
     font-size: 50px;
     color: ${({ theme }) => theme.primary};
 
-    margin-left: 26%;
+    margin-left: 205px;
   }
 
   img {
@@ -68,6 +68,9 @@ export const Content = styled.div`
 `;
 
 export const BorderForm = styled.div`
+  margin-bottom: 50px;
+  margin-top: 50px;
+
   padding: 20px 50px;
 
   background-color: ${({ theme }) => theme.background_light};
@@ -107,6 +110,7 @@ export const Form = styled.div`
   }
 
   button {
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,6 +121,7 @@ export const Form = styled.div`
 
     padding: 10px 25px;
     margin-top: 25px;
+    margin-left: 85px;
     margin-bottom: 10px;
     border-radius: 30px;
 
@@ -135,6 +140,7 @@ export const Form = styled.div`
   }
 
   .btn2 {
+    width: 100%;
     padding: 10px 28px;
     margin-left: 0px;
     margin-top: 10px;
@@ -154,6 +160,7 @@ export const Form = styled.div`
   }
 
   .btn3 {
+    width: 100%;
     padding: 10px 38px;
     border: 2px solid ${({ theme }) => theme.background};
     margin-left: 0px;

@@ -15,6 +15,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  position: fixed;
   flex-direction: column;
   position: absolute;
   align-items: center;
