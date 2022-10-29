@@ -9,7 +9,7 @@ const usersRepository = new UsersRepository();
 
 class UsersController {
   async createUsers(request, response) {
-    const { name, email, telephone, password, cep } = request.body;
+    const { name, email, telephone, password } = request.body;
 
     const createUser = new CreateUsersService(usersRepository);
 
@@ -18,6 +18,7 @@ class UsersController {
       email,
       telephone,
       password,
+      social: false,
     });
 
     return response.json({ user });
@@ -36,18 +37,6 @@ class UsersController {
     const forgot = await forgotPassword.execute({ email });
 
     return response.json(forgot);
-  }
-
-  async getAllUsers(request, response) {
-    return response.json({ getAll: true });
-  }
-
-  async updateUsers(request, response) {
-    return response.json({ update: true });
-  }
-
-  async deleteUsers(request, response) {
-    return response.json({ delete: true });
   }
 }
 

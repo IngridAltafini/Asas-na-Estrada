@@ -9,6 +9,7 @@ exports.up = function (knex) {
     table.text('email').notNullable();
     table.text('telephone').notNullable();
     table.text('password').notNullable();
+    table.boolean('social').notNullable();
     table.text('cep');
     table.text('andress');
     table.text('neighborhood');
