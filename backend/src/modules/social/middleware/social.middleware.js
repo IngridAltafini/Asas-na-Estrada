@@ -8,7 +8,7 @@ module.exports = {
   async verifyIfEmailAlreadyExists(request, next) {
     const { email } = request.body;
 
-    const emailExists = await socialRepository.checkUsersEmail(email);
+    const emailExists = await socialRepository.checkSocialEmail(email);
 
     if (emailExists) throw new AppError('email already exists', 401);
 
