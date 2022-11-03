@@ -27,6 +27,23 @@ class SessionService {
       user,
     };
   }
+
+  async social(payload) {
+    const { name, email, avatar } = payload;
+    const user = await this.usersRepository.checkUsersEmail({ email });
+    if (!user) throw new AppError('user not found');
+
+    const token = jwt.sign({ id: user.provider_id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRE,
+    });
+
+    return {
+      token,
+      user,
+      name,
+      avatar,
+    };
+  }
 }
 
 module.exports = SessionService;

@@ -9,16 +9,15 @@ const usersRepository = new UsersRepository();
 
 class UsersController {
   async createUsers(request, response) {
-    const { name, email, telephone, password } = request.body;
+    const { provider_id, name, email, password } = request.body;
 
     const createUser = new CreateUsersService(usersRepository);
 
     const user = await createUser.execute({
+      provider_id,
       name,
       email,
-      telephone,
       password,
-      social: false,
     });
 
     return response.json({ user });

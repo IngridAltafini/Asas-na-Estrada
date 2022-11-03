@@ -11,6 +11,13 @@ class SessionsController {
     const user = await sessionService.execute(request.body);
     return response.json(user);
   }
+
+  async loginSocial(request, response) {
+    const sessionService = new SessionService(usersRepository);
+
+    const social = await sessionService.social(request.body);
+    return response.json(social);
+  }
 }
 
 module.exports = SessionsController;
