@@ -56,7 +56,6 @@ export const SignUp = () => {
             <h2>Crie sua conta</h2>
 
             <input type="text" placeholder="Nome" />
-            <input type="text" placeholder="Telefone com DDD" />
             <input type="text" placeholder="E-mail" />
             <input type="password" placeholder="Senha" />
             <input type="passwprd" placeholder="Confirme sua senha" />

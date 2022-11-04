@@ -8,6 +8,7 @@ export const Container = styled.div`
 `;
 
 export const Background = styled.div`
+  position: relative;
   flex: 1;
   background: no-repeat;
   background-size: cover;
@@ -21,7 +22,7 @@ export const Background = styled.div`
     color: ${({ theme }) => theme.text};
 
     margin-top: 30px;
-    margin-left: 308px;
+    margin-left: 290px;
   }
 
   > p {
@@ -32,7 +33,7 @@ export const Background = styled.div`
     font-size: 37px;
     color: ${({ theme }) => theme.text};
 
-    margin-left: 295px;
+    margin-left: 278px;
     font-weight: 700;
   }
 
@@ -44,13 +45,13 @@ export const Background = styled.div`
     font-size: 50px;
     color: ${({ theme }) => theme.primary};
 
-    margin-left: 245px;
+    margin-left: 225px;
   }
 
   > img {
-    width: 750px;
+    width: 650px;
 
-    margin-left: 50px;
+    margin-left: 110px;
 
     display: flex;
     align-items: center;
@@ -58,17 +59,21 @@ export const Background = styled.div`
 `;
 
 export const Content = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
+  margin-top: 25px;
+  margin-left: 60%;
+
   width: 100%;
-  max-width: 750px;
+  max-width: max-content;
 `;
 
 export const BorderForm = styled.div`
-  margin-top: 60px;
+  margin-top: 10px;
 
   padding: 20px 50px;
 

@@ -14,12 +14,16 @@ export const AuthContextProvider = ({ children }) => {
 
   const GoogleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
+    signInWithPopup(auth, provider).then(async result => {
+      console.log('result ', result);
+    });
   };
 
   const FacebookSignIn = () => {
     const provider = new FacebookAuthProvider();
-    signInWithPopup(auth, provider);
+    signInWithPopup(auth, provider).then(async result => {
+      console.log('result', result);
+    });
   };
 
   useEffect(() => {
