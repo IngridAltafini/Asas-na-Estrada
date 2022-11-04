@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 130vh;
+  height: 100vh;
 
   display: flex;
   align-items: stretch;
 `;
 
 export const Background = styled.div`
+  position: relative;
   flex: 1;
   background: no-repeat;
   background-size: cover;
@@ -17,11 +18,11 @@ export const Background = styled.div`
     flex-direction: center;
     text-align: center;
 
-    font-size: 40px;
+    font-size: 37px;
     color: ${({ theme }) => theme.text};
 
-    margin-top: 80px;
-    margin-left: 260px;
+    margin-top: 30px;
+    margin-left: 290px;
   }
 
   > p {
@@ -29,10 +30,10 @@ export const Background = styled.div`
     flex-direction: center;
     text-align: center;
 
-    font-size: 40px;
+    font-size: 37px;
     color: ${({ theme }) => theme.text};
 
-    margin-left: 248px;
+    margin-left: 278px;
     font-weight: 700;
   }
 
@@ -44,13 +45,13 @@ export const Background = styled.div`
     font-size: 50px;
     color: ${({ theme }) => theme.primary};
 
-    margin-left: 205px;
+    margin-left: 225px;
   }
 
   img {
-    width: 750px;
-    margin-top: 50px;
-    margin-left: 50px;
+    width: 650px;
+
+    margin-left: 110px;
 
     display: flex;
     align-items: center;
@@ -58,19 +59,20 @@ export const Background = styled.div`
 `;
 
 export const Content = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
+  margin-top: 18px;
+  margin-left: 60%;
+
   width: 100%;
-  max-width: 750px;
+  max-width: max-content;
 `;
 
 export const BorderForm = styled.div`
-  margin-bottom: 50px;
-  margin-top: 50px;
-
   padding: 20px 50px;
 
   background-color: ${({ theme }) => theme.background_light};
@@ -132,56 +134,8 @@ export const Form = styled.div`
     }
   }
 
-  > p {
-    text-align: center;
-    color: ${({ theme }) => theme.primary};
-    font-size: 24px;
-    font-weight: 500;
-  }
-
-  .btn2 {
-    width: 100%;
-    padding: 10px 28px;
-    margin-left: 0px;
-    margin-top: 10px;
-    color: ${({ theme }) => theme.background_light};
-    background-color: ${({ theme }) => theme.facebook};
-
-    transition: transform 100ms linear;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-    svg {
-      display: flex;
-      align-items: center;
-      margin-right: 8px;
-    }
-  }
-
-  .btn3 {
-    width: 100%;
-    padding: 10px 38px;
-    border: 2px solid ${({ theme }) => theme.background};
-    margin-left: 0px;
-    margin-top: 2px;
-    color: ${({ theme }) => theme.text};
-    background-color: ${({ theme }) => theme.background_light};
-
-    transition: transform 100ms linear;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-
-    svg {
-      display: flex;
-      align-items: center;
-      margin-right: 8px;
-    }
-  }
-
   > strong {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     text-align: center;

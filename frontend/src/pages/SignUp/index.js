@@ -1,13 +1,8 @@
 import React from 'react';
-import { UserAuth } from '../../context/AuthContext';
 
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import background from '../../assets/background.jpeg';
-
-import { RiFacebookCircleFill } from 'react-icons/ri';
-
-import { FcGoogle } from 'react-icons/fc';
 
 import { environment } from '../../shared/environment';
 
@@ -23,23 +18,6 @@ import {
 import { Link } from 'react-router-dom';
 
 export const SignUp = () => {
-  const { GoogleSignIn, FacebookSignIn } = UserAuth();
-
-  const handleFacebookSignIn = async () => {
-    try {
-      await FacebookSignIn();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleGoogleSignIn = async () => {
-    try {
-      await GoogleSignIn();
-    } catch (error) {
-      console.log(error);
-    }
-  };
   return (
     <Container>
       <Background>
@@ -69,22 +47,7 @@ export const SignUp = () => {
               />
             </Box>
 
-            <button type="button">Continuar</button>
-
-            <p>ou</p>
-
-            <button
-              className="btn2"
-              type="button"
-              onClick={handleFacebookSignIn}
-            >
-              <RiFacebookCircleFill />
-              Continuar com o Facebook
-            </button>
-            <button className="btn3" type="button" onClick={handleGoogleSignIn}>
-              <FcGoogle />
-              Continuar com o Google
-            </button>
+            <button type="submit">Continuar</button>
 
             <strong>
               Já possui uma conta em Asas na estrada?

@@ -18,12 +18,8 @@ export const Welcome = () => {
 
         <strong>Vamos começar</strong>
 
-        <button class="btn1" type="button">
-          Login
-        </button>
-        <button class="btn2" type="button">
-          Cadastro
-        </button>
+        <button type="submit">Login</button>
+        <button type="submit">Cadastro</button>
       </Content>
     </Container>
   );

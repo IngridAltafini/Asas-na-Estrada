@@ -65,7 +65,7 @@ export const Content = styled.div`
   align-items: center;
   justify-content: center;
 
-  margin-top: 25px;
+  margin-top: 35px;
   margin-left: 60%;
 
   width: 100%;
@@ -73,8 +73,6 @@ export const Content = styled.div`
 `;
 
 export const BorderForm = styled.div`
-  margin-top: 10px;
-
   padding: 20px 50px;
 
   background-color: ${({ theme }) => theme.background_light};

@@ -51,19 +51,19 @@ export const SignIn = () => {
               <a href="forgot">Esqueci senha</a>
             </h4>
 
-            <button type="button">Conecte-se</button>
+            <button type="submit">Conecte-se</button>
 
             <p>ou</p>
 
             <button
               className="btn2"
-              type="button"
+              type="submit"
               onClick={handleFacebookSignIn}
             >
               <RiFacebookCircleFill />
               Continuar com o Facebook
             </button>
-            <button className="btn3" type="button" onClick={handleGoogleSignIn}>
+            <button className="btn3" type="submit" onClick={handleGoogleSignIn}>
               <FcGoogle />
               Continuar com o Google
             </button>
