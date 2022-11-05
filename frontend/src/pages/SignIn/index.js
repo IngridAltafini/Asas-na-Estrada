@@ -1,16 +1,31 @@
-import React from 'react';
+import { useCallback } from 'react';
+
 import { UserAuth } from '../../context/AuthContext';
 
 import background from '../../assets/background.jpeg';
 
 import { RiFacebookCircleFill } from 'react-icons/ri';
-
 import { FcGoogle } from 'react-icons/fc';
+import { HiOutlineMail } from 'react-icons/hi';
+import { BiLockAlt } from 'react-icons/bi';
 
-import { Container, Background, Content, BorderForm, Form } from './styles';
 import { Link } from 'react-router-dom';
 
+import { Form } from '@unform/web';
+
+import { Input, Button } from '../../shared/components';
+
+import { api } from '../../shared/service';
+
+import { Container, Background, Content, BorderForm } from './styles';
+
 export const SignIn = () => {
+  const handleSubmit = useCallback(async data => {
+    const response = await api.post('/users', data);
+
+    console.log(response);
+  }, []);
+
   const { GoogleSignIn, FacebookSignIn } = UserAuth();
 
   const handleFacebookSignIn = async () => {
@@ -40,33 +55,43 @@ export const SignIn = () => {
 
       <Content>
         <BorderForm>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <h1>Login:</h1>
             <h2>Realize seu login</h2>
 
-            <input type="text" placeholder="E-mail" />
-            <input type="password" placeholder="Senha" />
+            <Input
+              name="email"
+              icon={HiOutlineMail}
+              type="email"
+              placeholder="E-mail"
+            />
+            <Input
+              name="password"
+              icon={BiLockAlt}
+              type="password"
+              placeholder="Senha"
+            />
             <h4>
               Esqueceu sua senha?
               <a href="forgot">Esqueci senha</a>
             </h4>
 
-            <button type="submit">Conecte-se</button>
+            <Button type="submit">Conecte-se</Button>
 
             <p>ou</p>
 
-            <button
+            <Button
               className="btn2"
               type="submit"
               onClick={handleFacebookSignIn}
             >
               <RiFacebookCircleFill />
               Continuar com o Facebook
-            </button>
-            <button className="btn3" type="submit" onClick={handleGoogleSignIn}>
+            </Button>
+            <Button className="btn3" type="submit" onClick={handleGoogleSignIn}>
               <FcGoogle />
               Continuar com o Google
-            </button>
+            </Button>
 
             <strong>
               Não faz parte de Asas na estrada?

@@ -1,11 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContextProvider } from '../../context/AuthContext';
 
-import { Welcome } from '../../pages';
-
-import { SignUp } from '../../pages';
-
-import { SignIn } from '../../pages';
+import { Welcome, SignUp, SignIn } from '../../pages';
 
 import { Layout } from '../components';
 

@@ -27,7 +27,7 @@ export const Content = styled.div`
   background-color: ${({ theme }) => theme.background_light};
 
   border: 7px solid;
-  border-color: ${({ theme }) => theme.secundary};
+  border-color: ${({ theme }) => theme.secondary};
 
   > img {
     max-width: 330px;
@@ -68,7 +68,7 @@ export const Content = styled.div`
     width: 30%;
     font-size: 20px;
     font-weight: 700;
-    background-color: ${({ theme }) => theme.secundary};
+    background-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.background_light};
 
     padding: 10px;

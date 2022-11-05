@@ -3,13 +3,14 @@ export default {
   primary: '#F33C2A',
   primary_light: 'rgb(243, 60, 42, 0.2)',
 
-  secundary: '#E8523A',
-  secundary_light: 'rgb(232, 82, 58, 0.2)',
+  secondary: '#E8523A',
+  secondary_light: 'rgb(232, 82, 58, 0.2)',
 
   text: '#0A0E0D',
   text2: '#fff',
 
-  background: '#9EA5AF',
+  dark_gray: '#777',
+
   background_light: '#FAFAFA',
 
   content: 'rgba(10, 14, 13, 0.2)',

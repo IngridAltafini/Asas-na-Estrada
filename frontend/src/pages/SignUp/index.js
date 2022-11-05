@@ -1,23 +1,32 @@
-import React from 'react';
+import { useCallback } from 'react';
 
 import ReCAPTCHA from 'react-google-recaptcha';
 
-import background from '../../assets/background.jpeg';
-
-import { environment } from '../../shared/environment';
-
-import {
-  Container,
-  Background,
-  Content,
-  BorderForm,
-  Form,
-  Box,
-} from './styles';
+import { HiOutlineMail } from 'react-icons/hi';
+import { TbEdit } from 'react-icons/tb';
+import { BiLockAlt, BiLockOpenAlt } from 'react-icons/bi';
 
 import { Link } from 'react-router-dom';
 
+import { Form } from '@unform/web';
+
+import background from '../../assets/background.jpeg';
+
+import { Input, Button } from '../../shared/components';
+
+import { environment } from '../../shared/environment';
+
+import { api } from '../../shared/service';
+
+import { Container, Background, Content, BorderForm, Box } from './styles';
+
 export const SignUp = () => {
+  const handleSubmit = useCallback(async data => {
+    const response = await api.post('/users', data);
+
+    console.log(response);
+  }, []);
+
   return (
     <Container>
       <Background>
@@ -29,14 +38,29 @@ export const SignUp = () => {
 
       <Content>
         <BorderForm>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <h1>Cadastro:</h1>
             <h2>Crie sua conta</h2>
 
-            <input type="text" placeholder="Nome" />
-            <input type="text" placeholder="E-mail" />
-            <input type="password" placeholder="Senha" />
-            <input type="passwprd" placeholder="Confirme sua senha" />
+            <Input name="name" type="text" icon={TbEdit} placeholder="Nome" />
+            <Input
+              name="email"
+              type="email"
+              icon={HiOutlineMail}
+              placeholder="E-mail"
+            />
+            <Input
+              name="password"
+              type="password"
+              icon={BiLockAlt}
+              placeholder="Senha"
+            />
+            <Input
+              name="confirmPassword"
+              type="password"
+              icon={BiLockOpenAlt}
+              placeholder="Confirme sua senha"
+            />
 
             <Box>
               <ReCAPTCHA
@@ -47,7 +71,7 @@ export const SignUp = () => {
               />
             </Box>
 
-            <button type="submit">Continuar</button>
+            <Button type="submit">Continuar</Button>
 
             <strong>
               Já possui uma conta em Asas na estrada?

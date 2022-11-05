@@ -18,11 +18,11 @@ export const Background = styled.div`
     flex-direction: center;
     text-align: center;
 
-    font-size: 37px;
+    font-size: 38px;
     color: ${({ theme }) => theme.text};
 
     margin-top: 30px;
-    margin-left: 290px;
+    margin-left: 288px;
   }
 
   > p {
@@ -30,10 +30,10 @@ export const Background = styled.div`
     flex-direction: center;
     text-align: center;
 
-    font-size: 37px;
+    font-size: 38px;
     color: ${({ theme }) => theme.text};
 
-    margin-left: 278px;
+    margin-left: 274px;
     font-weight: 700;
   }
 
@@ -45,7 +45,7 @@ export const Background = styled.div`
     font-size: 50px;
     color: ${({ theme }) => theme.primary};
 
-    margin-left: 225px;
+    margin-left: 226px;
   }
 
   > img {
@@ -65,7 +65,7 @@ export const Content = styled.div`
   align-items: center;
   justify-content: center;
 
-  margin-top: 35px;
+  margin-top: 48px;
   margin-left: 60%;
 
   width: 100%;
@@ -78,152 +78,95 @@ export const BorderForm = styled.div`
   background-color: ${({ theme }) => theme.background_light};
 
   border-radius: 40px;
-  border: 7px solid;
-  border-color: ${({ theme }) => theme.secundary};
-`;
+  border: 6px solid;
+  border-color: ${({ theme }) => theme.secondary};
 
-export const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-  text-align: center;
-
-  h1 {
-    color: ${({ theme }) => theme.primary};
-    margin-bottom: 10px;
-  }
-
-  h2 {
-    margin-bottom: 25px;
-    color: ${({ theme }) => theme.text};
-  }
-
-  input {
-    font-size: 16px;
-    padding: 0.5em 0;
-    margin-bottom: 25px;
-    background-color: ${({ theme }) => theme.background_light};
-    border-bottom: 1px solid ${({ theme }) => theme.secundary_light};
-    width: 100%;
-
-    &::placeholder {
-      color: ${({ theme }) => theme.secundary};
-    }
-  }
-  > h4 {
-    margin-top: 10px;
+  form {
     display: flex;
-    align-items: baseline;
+    flex-direction: column;
+    width: 350px;
     text-align: center;
 
-    color: ${({ theme }) => theme.text};
-
-    > a {
-      display: block;
-      margin-left: 95px;
-      text-align: center;
+    h1 {
+      font-size: 30px;
       color: ${({ theme }) => theme.primary};
-      text-decoration: none;
+      margin-bottom: 10px;
+    }
 
-      transition: transform 100ms linear;
+    h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: ${({ theme }) => theme.text};
+    }
 
-      &:hover {
-        transform: scale(1.05);
+    > h4 {
+      font-size: 16px;
+      margin-top: 10px;
+      display: flex;
+      align-items: baseline;
+      text-align: center;
+
+      color: ${({ theme }) => theme.text};
+
+      > a {
+        display: block;
+        margin-left: 94px;
+        text-align: center;
+        color: ${({ theme }) => theme.primary};
+        text-decoration: none;
+
+        transition: transform 100ms linear;
+
+        &:hover {
+          transform: scale(1.05);
+        }
       }
     }
-  }
 
-  button {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 17px;
-    font-weight: 700;
-    background-color: ${({ theme }) => theme.secundary};
-    color: ${({ theme }) => theme.background_light};
-
-    padding: 10px 25px;
-    margin-top: 25px;
-    margin-left: 85px;
-    margin-bottom: 10px;
-    border-radius: 30px;
-
-    transition: transform 100ms linear;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-
-  > p {
-    text-align: center;
-    color: ${({ theme }) => theme.primary};
-    font-size: 24px;
-    font-weight: 500;
-  }
-
-  .btn2 {
-    width: 100%;
-    padding: 10px 28px;
-    margin-left: 0px;
-    margin-top: 10px;
-    color: ${({ theme }) => theme.background_light};
-    background-color: ${({ theme }) => theme.facebook};
-
-    transition: transform 100ms linear;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-    svg {
-      display: flex;
-      align-items: center;
-      margin-right: 8px;
-    }
-  }
-
-  .btn3 {
-    width: 100%;
-    padding: 10px 38px;
-    border: 2px solid ${({ theme }) => theme.background};
-    margin-left: 0px;
-    margin-top: 2px;
-    color: ${({ theme }) => theme.text};
-    background-color: ${({ theme }) => theme.background_light};
-
-    transition: transform 100ms linear;
-
-    &:hover {
-      transform: scale(1.05);
+    .btn2 {
+      width: 100%;
+      margin-left: 0px;
+      margin-top: 10px;
+      background-color: ${({ theme }) => theme.facebook};
     }
 
-    svg {
-      display: flex;
-      align-items: center;
-      margin-right: 8px;
+    .btn3 {
+      width: 100%;
+      border: 2px solid ${({ theme }) => theme.dark_gray};
+      margin-left: 0px;
+      margin-top: 2px;
+      color: ${({ theme }) => theme.text};
+      background-color: ${({ theme }) => theme.background_light};
     }
-  }
 
-  > strong {
-    margin-top: 10px;
-    display: flex;
-    align-items: baseline;
-    text-align: center;
-
-    color: ${({ theme }) => theme.text};
-
-    a {
-      display: block;
-      margin-left: 20px;
+    p {
+      font-size: 24px;
       text-align: center;
       color: ${({ theme }) => theme.primary};
-      text-decoration: none;
+      font-weight: 500;
+    }
 
-      transition: transform 100ms linear;
+    > strong {
+      font-size: 16px;
+      margin-top: 10px;
+      display: flex;
+      align-items: baseline;
+      text-align: center;
 
-      &:hover {
-        transform: scale(1.05);
+      color: ${({ theme }) => theme.text};
+
+      a {
+        display: block;
+        margin-left: 20px;
+        text-align: center;
+        color: ${({ theme }) => theme.primary};
+        text-decoration: none;
+
+        transition: transform 100ms linear;
+
+        &:hover {
+          transform: scale(1.05);
+        }
       }
     }
   }

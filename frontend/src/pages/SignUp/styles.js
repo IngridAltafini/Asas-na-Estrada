@@ -79,79 +79,43 @@ export const BorderForm = styled.div`
 
   border-radius: 40px;
   border: 7px solid;
-  border-color: ${({ theme }) => theme.secundary};
-`;
+  border-color: ${({ theme }) => theme.secondary};
 
-export const Form = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-  text-align: center;
-
-  h1 {
-    color: ${({ theme }) => theme.primary};
-    margin-bottom: 10px;
-  }
-
-  h2 {
-    margin-bottom: 25px;
-    color: ${({ theme }) => theme.text};
-  }
-
-  input {
-    font-size: 16px;
-    padding: 0.5em 0;
-    margin-bottom: 25px;
-    background-color: ${({ theme }) => theme.background_light};
-    border-bottom: 1px solid ${({ theme }) => theme.secundary_light};
-    width: 100%;
-
-    &::placeholder {
-      color: ${({ theme }) => theme.secundary};
-    }
-  }
-
-  button {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 17px;
-    font-weight: 700;
-    background-color: ${({ theme }) => theme.secundary};
-    color: ${({ theme }) => theme.background_light};
-
-    padding: 10px 25px;
-    margin-top: 25px;
-    margin-left: 85px;
-    margin-bottom: 10px;
-    border-radius: 30px;
-
-    transition: transform 100ms linear;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-
-  > strong {
-    margin-top: 10px;
+  form {
     display: flex;
     flex-direction: column;
+    width: 350px;
     text-align: center;
 
-    color: ${({ theme }) => theme.text};
-
-    a {
-      display: block;
-      text-align: center;
+    h1 {
       color: ${({ theme }) => theme.primary};
-      text-decoration: none;
+      margin-bottom: 10px;
+    }
 
-      transition: transform 100ms linear;
+    h2 {
+      margin-bottom: 25px;
+      color: ${({ theme }) => theme.text};
+    }
 
-      &:hover {
-        transform: scale(1.05);
+    > strong {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+
+      color: ${({ theme }) => theme.text};
+
+      a {
+        display: block;
+        text-align: center;
+        color: ${({ theme }) => theme.primary};
+        text-decoration: none;
+
+        transition: transform 100ms linear;
+
+        &:hover {
+          transform: scale(1.05);
+        }
       }
     }
   }
