@@ -23,6 +23,31 @@ class UsersRepository {
       trx('users_token').insert(payload).returning('token')
     );
   }
+
+  async getTokenUser(token) {
+    return connection('users_token')
+      .join('users', 'users.id', 'users_token.user_id')
+      .where({
+        token,
+      })
+      .first();
+  }
+
+  async updatePasswordAndDeleteToken(payload) {
+    return connection.transaction(async trx => {
+      await trx('users')
+        .update({
+          password: payload.password,
+        })
+        .where({
+          id: payload.userId,
+        });
+
+      await trx('users_token').del().where({
+        user_id: payload.userId,
+      });
+    });
+  }
 }
 
 module.exports = UsersRepository;

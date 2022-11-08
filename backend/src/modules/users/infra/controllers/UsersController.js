@@ -4,6 +4,7 @@ const MailProvider = require('../../../../shared/providers/MailProvider');
 
 const CreateUsersService = require('../../service/CreateUsersService');
 const ForgotPasswordService = require('../../service/ForgotPasswordService');
+const ResetPasswordService = require('../../service/ResetPasswordService');
 
 const usersRepository = new UsersRepository();
 
@@ -36,6 +37,20 @@ class UsersController {
     const forgot = await forgotPassword.execute({ email });
 
     return response.json(forgot);
+  }
+
+  async resetPassword(request, response) {
+    const resetPassword = new ResetPasswordService(usersRepository);
+
+    const { token } = request.params;
+    const { password } = request.body;
+
+    const result = await resetPassword.execute({
+      token,
+      password,
+    });
+
+    return response.json(result);
   }
 }
 
