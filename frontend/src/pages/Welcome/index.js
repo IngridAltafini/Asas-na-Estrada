@@ -1,7 +1,11 @@
 import React from 'react';
-import { Container, Content } from './styles';
+
 import logo from '../../assets/logo.png';
 import fundo from '../../assets/fundo.png';
+
+import { Button } from '../../shared/components';
+
+import { Container, Content } from './styles';
 
 export const Welcome = () => {
   return (
@@ -18,8 +22,12 @@ export const Welcome = () => {
 
         <strong>Vamos começar</strong>
 
-        <button type="submit">Login</button>
-        <button type="submit">Cadastro</button>
+        <Button className="btn1" type="submit">
+          Login
+        </Button>
+        <Button className="btn2" type="submit">
+          Cadastro
+        </Button>
       </Content>
     </Container>
   );

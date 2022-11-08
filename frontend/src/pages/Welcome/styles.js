@@ -30,55 +30,49 @@ export const Content = styled.div`
   border-color: ${({ theme }) => theme.secondary};
 
   > img {
-    max-width: 330px;
-    margin-top: -50px;
-    margin-bottom: -80px;
+    max-width: 300px;
+    margin-top: -48px;
+    margin-bottom: -78px;
   }
 
   h1 {
     color: ${({ theme }) => theme.text};
-    font-size: 40px;
+    font-size: 36px;
   }
 
   h2 {
     color: ${({ theme }) => theme.primary};
-    margin-top: -10px;
-    font-size: 40px;
+    font-size: 36px;
   }
 
   h3 {
     color: ${({ theme }) => theme.text};
-    margin-top: 20px;
-    font-size: 25px;
+    margin-top: 16px;
+    font-size: 24px;
   }
 
   h4 {
     color: ${({ theme }) => theme.text};
-    font-size: 25px;
-    margin-bottom: 20px;
+    font-size: 26px;
+    margin-bottom: 14px;
   }
 
   strong {
     color: ${({ theme }) => theme.primary};
-    font-size: 35px;
-    margin-bottom: 20px;
+    font-size: 36px;
   }
 
-  button {
+  .btn1 {
+    font-size: 18px;
     width: 30%;
-    font-size: 20px;
-    font-weight: 700;
-    background-color: ${({ theme }) => theme.secondary};
-    color: ${({ theme }) => theme.background_light};
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
 
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 30px;
-
-    transition: transform 100ms linear;
-
-    &:hover {
-      transform: scale(1.05);
-    }
+  .btn2 {
+    font-size: 18px;
+    width: 30%;
+    margin-bottom: 26px;
+    margin-left: 0px;
   }
 `;

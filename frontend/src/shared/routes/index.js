@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContextProvider } from '../../context/AuthContext';
 
-import { Welcome, SignUp, SignIn } from '../../pages';
+import { Welcome, SignUp, SignIn, Forgot, Reset } from '../../pages';
 
 import { Layout } from '../components';
 
@@ -14,6 +14,10 @@ export const AppRoutes = () => {
         <Route path="/sign-up" element={<SignUp />} />
 
         <Route path="/sign-in" element={<SignIn />} />
+
+        <Route path="/forgot" element={<Forgot />} />
+
+        <Route path="/reset" element={<Reset />} />
 
         <Route path="/layout" element={<Layout />} />
 
