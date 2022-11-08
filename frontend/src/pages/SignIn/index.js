@@ -76,7 +76,7 @@ export const SignIn = () => {
               <Link to="/forgot">Esqueci senha</Link>
             </h4>
 
-            <Button type="submit">Conecte-se</Button>
+            <Button type="submit">Logar</Button>
 
             <p>ou</p>
 
