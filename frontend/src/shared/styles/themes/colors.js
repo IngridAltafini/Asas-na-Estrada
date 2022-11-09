@@ -16,7 +16,6 @@ export default {
   content: 'rgba(10, 14, 13, 0.2)',
 
   facebook: '#4693E5',
-  email: '#C01F1F',
 
   sucess_title: '#4CFF33',
   sucess_background: '#BAF7B2',
@@ -27,6 +26,6 @@ export default {
   warning_title: '#F3B309',
   warning_background: '#FFEBB6',
 
-  error_title: '#E11D1D',
-  error_title: '#F2BFBF',
+  error_title: '#FE0101',
+  error_background: '#F2BFBF',
 };

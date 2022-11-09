@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -8,6 +8,8 @@ import { BiLockAlt, BiLockOpenAlt } from 'react-icons/bi';
 
 import { Link } from 'react-router-dom';
 
+import * as Yup from 'yup';
+
 import { Form } from '@unform/web';
 
 import background from '../../assets/background.jpeg';
@@ -16,15 +18,39 @@ import { Input, Button } from '../../shared/components';
 
 import { environment } from '../../shared/environment';
 
-import { api } from '../../shared/service';
+import getValidationErrors from '../../shared/utils/getValidationErrors';
+
+//import { api } from '../../shared/service';
 
 import { Container, Background, Content, BorderForm, Box } from './styles';
 
 export const SignUp = () => {
+  const formRef = useRef(null);
   const handleSubmit = useCallback(async data => {
-    const response = await api.post('/users', data);
+    try {
+      const schema = Yup.object().shape({
+        name: Yup.string().required('Nome é obrigatório'),
+        email: Yup.string()
+          .email('Digite um email válido')
+          .required('Email é obrigatório'),
+        password: Yup.string()
+          .required('Senha é obrigatória')
+          .min(8, 'Mínimo de 8 caracteres'),
+        confirmPassword: Yup.string().required(
+          'Confirmação de senha é obrigatório'
+        ),
+      });
 
-    console.log(response);
+      await schema.validate(data, { abortEarly: false });
+    } catch (err) {
+      const errors = getValidationErrors(err);
+
+      formRef.current?.setErrors(errors);
+    }
+
+    // const response = await api.post('/users', data);
+
+    //console.log(response);
   }, []);
 
   return (
@@ -38,7 +64,7 @@ export const SignUp = () => {
 
       <Content>
         <BorderForm>
-          <Form onSubmit={handleSubmit}>
+          <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Cadastro:</h1>
             <h2>Crie sua conta</h2>
 

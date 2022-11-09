@@ -22,7 +22,7 @@ export const Background = styled.div`
     color: ${({ theme }) => theme.text};
 
     margin-top: 30px;
-    margin-left: 290px;
+    margin-left: 240px;
   }
 
   > p {
@@ -33,7 +33,7 @@ export const Background = styled.div`
     font-size: 37px;
     color: ${({ theme }) => theme.text};
 
-    margin-left: 278px;
+    margin-left: 228px;
     font-weight: 700;
   }
 
@@ -45,13 +45,13 @@ export const Background = styled.div`
     font-size: 50px;
     color: ${({ theme }) => theme.primary};
 
-    margin-left: 225px;
+    margin-left: 178px;
   }
 
   img {
     width: 650px;
 
-    margin-left: 110px;
+    margin-left: 90px;
 
     display: flex;
     align-items: center;
@@ -66,7 +66,7 @@ export const Content = styled.div`
   justify-content: center;
 
   margin-top: 18px;
-  margin-left: 60%;
+  margin-left: 61%;
 
   width: 100%;
   max-width: max-content;
@@ -93,7 +93,7 @@ export const BorderForm = styled.div`
     }
 
     h2 {
-      margin-bottom: 25px;
+      margin-bottom: 36px;
       color: ${({ theme }) => theme.text};
     }
 
@@ -114,7 +114,7 @@ export const BorderForm = styled.div`
         transition: transform 100ms linear;
 
         &:hover {
-          transform: scale(1.05);
+          transform: scale(1.04);
         }
       }
     }

@@ -37,7 +37,7 @@ export const Forgot = () => {
               placeholder="E-mail"
             />
 
-            <Button type="submit">Enviar e-mail</Button>
+            <Button type="submit">Enviar código</Button>
 
             <Link to="/sign-in">Voltar</Link>
           </Form>

@@ -16,6 +16,12 @@ export const Container = styled.div`
   }
 
   ${props =>
+    props.isErrored &&
+    css`
+      border-color: ${propsTheme => propsTheme.theme.error_title};
+    `}
+
+  ${props =>
     props.isFocused &&
     css`
       color: ${propsTheme => propsTheme.theme.secondary};
