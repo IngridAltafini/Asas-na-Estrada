@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 
 import { UserAuth } from '../../context/AuthContext';
 
@@ -11,19 +11,41 @@ import { BiLockAlt } from 'react-icons/bi';
 
 import { Link } from 'react-router-dom';
 
+import * as Yup from 'yup';
+
 import { Form } from '@unform/web';
 
 import { Input, Button } from '../../shared/components';
 
-import { api } from '../../shared/service';
+//import { api } from '../../shared/service';
+
+import getValidationErrors from '../../shared/utils/getValidationErrors';
 
 import { Container, Background, Content, BorderForm } from './styles';
 
 export const SignIn = () => {
+  const formRef = useRef(null);
   const handleSubmit = useCallback(async data => {
-    const response = await api.post('/users', data);
+    try {
+      formRef.current.setErrors({});
 
-    console.log(response);
+      const schema = Yup.object().shape({
+        email: Yup.string().required('E-mail é obrigatório'),
+        password: Yup.string()
+          .min(8, 'Mínimo de 8 caracteres')
+          .required('Senha é obrigatória'),
+      });
+
+      await schema.validate(data, { abortEarly: false });
+    } catch (err) {
+      const errors = getValidationErrors(err);
+
+      formRef.current.setErrors(errors);
+    }
+
+    //const response = await api.post('/users', data);
+
+    //console.log(response);
   }, []);
 
   const { GoogleSignIn, FacebookSignIn } = UserAuth();
@@ -55,7 +77,7 @@ export const SignIn = () => {
 
       <Content>
         <BorderForm>
-          <Form onSubmit={handleSubmit}>
+          <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Login:</h1>
             <h2>Realize seu login</h2>
 

@@ -26,6 +26,6 @@ export default {
   warning_title: '#F3B309',
   warning_background: '#FFEBB6',
 
-  error_title: '#FE0101',
+  error_title: '#E11A1A',
   error_background: '#F2BFBF',
 };

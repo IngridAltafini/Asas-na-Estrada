@@ -66,14 +66,14 @@ export const Content = styled.div`
   justify-content: center;
 
   margin-top: 18px;
-  margin-left: 61%;
+  margin-left: 60%;
 
   width: 100%;
   max-width: max-content;
 `;
 
 export const BorderForm = styled.div`
-  padding: 20px 50px;
+  padding: 20px 66px;
 
   background-color: ${({ theme }) => theme.background_light};
 

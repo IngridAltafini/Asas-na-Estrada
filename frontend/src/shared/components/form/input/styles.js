@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { Tooltip } from '../../tooltip/Tooltip';
+
 export const Container = styled.div`
   padding: 6px;
   margin-bottom: 25px;
@@ -43,6 +45,22 @@ export const Container = styled.div`
 
     &::placeholder {
       color: ${({ theme }) => theme.dark_gray};
+    }
+  }
+`;
+export const Error = styled(Tooltip)`
+  margin-left: 16px;
+  height: 20px;
+
+  svg {
+    margin: 0;
+  }
+
+  span {
+    background: ${({ theme }) => theme.error_title};
+
+    &::before {
+      border-color: ${({ theme }) => theme.error_title} transparent;
     }
   }
 `;

@@ -28,24 +28,22 @@ export const SignUp = () => {
   const formRef = useRef(null);
   const handleSubmit = useCallback(async data => {
     try {
+      formRef.current.setErrors({});
+
       const schema = Yup.object().shape({
         name: Yup.string().required('Nome é obrigatório'),
-        email: Yup.string()
-          .email('Digite um email válido')
-          .required('Email é obrigatório'),
+        email: Yup.string().required('E-mail é obrigatório'),
         password: Yup.string()
-          .required('Senha é obrigatória')
-          .min(8, 'Mínimo de 8 caracteres'),
-        confirmPassword: Yup.string().required(
-          'Confirmação de senha é obrigatório'
-        ),
+          .min(8, 'Mínimo de 8 caracteres')
+          .required('Senha é obrigatória'),
+        confirmPassword: Yup.string().required('Confirmação obrigatória'),
       });
 
       await schema.validate(data, { abortEarly: false });
     } catch (err) {
       const errors = getValidationErrors(err);
 
-      formRef.current?.setErrors(errors);
+      formRef.current.setErrors(errors);
     }
 
     // const response = await api.post('/users', data);

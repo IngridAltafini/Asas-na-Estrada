@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components';
 
 import { BiErrorCircle } from 'react-icons/bi';
 
-import { Container } from './styles';
+import { Container, Error } from './styles';
 
 export const Input = ({ name, icon: Icon, ...rest }) => {
   const inputRef = useRef(null);
@@ -45,7 +45,11 @@ export const Input = ({ name, icon: Icon, ...rest }) => {
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
       />
-      {error && <BiErrorCircle size={20} color={theme.error_title} />}
+      {error && (
+        <Error title={error}>
+          <BiErrorCircle size={20} color={theme.error_title} />
+        </Error>
+      )}
     </Container>
   );
 };
