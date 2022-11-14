@@ -1,7 +1,9 @@
 const { Router } = require('express');
 
-const postSessions = require('../../middleware/validation.sessions');
-const postSessionsSocial = require('../../middleware/validation.social');
+const {
+  postSessions,
+  postSessionsSocial,
+} = require('../../middleware/validation.sessions');
 
 const SessionsController = require('../controllers/SessionsController');
 
