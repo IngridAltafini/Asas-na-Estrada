@@ -11,13 +11,6 @@ class UsersRepository {
     );
   }
 
-  /*async SocialUser(payload) {
-    return connection.transaction(async trx =>
-      trx('users').insert(payload).returning('provider_id')
-    );
-  }
-  */
-
   async saveTokenInDb(payload) {
     return connection.transaction(async trx =>
       trx('users_token').insert(payload).returning('token')

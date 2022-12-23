@@ -5,6 +5,8 @@ const Youch = require('youch');
 
 const { errors } = require('celebrate');
 
+const cors = require('cors');
+
 require('express-async-errors');
 
 const routes = require('../infra/routes');
@@ -14,6 +16,8 @@ const app = express();
 const port = 3333;
 
 app.use(express.json());
+
+app.use(cors({ origin: '*' }));
 
 app.use(routes);
 

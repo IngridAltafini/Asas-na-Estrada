@@ -10,18 +10,13 @@ const usersRepository = new UsersRepository();
 
 class UsersController {
   async createUsers(request, response) {
-    const { provider_id, name, email, password } = request.body;
+    const { name, email, password } = request.body;
 
     const createUser = new CreateUsersService(usersRepository);
 
-    const user = await createUser.execute({
-      provider_id,
-      name,
-      email,
-      password,
-    });
+    const user = await createUser.execute({ name, email, password });
 
-    return response.json({ user });
+    return response.json(user);
   }
 
   async forgotPassword(request, response) {

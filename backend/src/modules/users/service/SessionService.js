@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const AppError = require('../../../shared/errors/AppError');
 
-const { compare } = require('../../../shared/utils/encrypt');
+const { compare, generateHash } = require('../../../shared/utils/encrypt');
 
 class SessionService {
   constructor(usersRepository) {
@@ -29,9 +29,20 @@ class SessionService {
   }
 
   async social(payload) {
-    const { name, email, avatar } = payload;
-    const user = await this.usersRepository.checkUsersEmail({ email });
-    if (!user) throw new AppError('user not found');
+    const { email, name, provider_id } = payload;
+
+    let user = await this.usersRepository.checkUsersEmail({ email });
+    if (!user) {
+      const hashedPassword = await generateHash('1234');
+
+      //criar usuario
+      user = await this.usersRepository.createUser({
+        email,
+        name,
+        password: hashedPassword,
+        provider_id,
+      });
+    }
 
     const token = jwt.sign({ id: user.provider_id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRE,
@@ -40,8 +51,6 @@ class SessionService {
     return {
       token,
       user,
-      name,
-      avatar,
     };
   }
 }

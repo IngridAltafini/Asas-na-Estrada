@@ -8,6 +8,8 @@ class CreateUsersService {
   async execute(payload) {
     const { password } = payload;
 
+    console.log(password);
+
     Object.assign(payload, {
       password: await generateHash(password),
     });
