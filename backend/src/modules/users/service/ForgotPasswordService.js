@@ -34,7 +34,7 @@ class ForgotPasswordService {
 
     await this.mailProvider.sendMail({
       email,
-      subject: '[Asas na Estrada] Código de recuperação',
+      subject: '[Asas na Estrada] Código de segurança',
       template: message,
     });
 
