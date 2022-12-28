@@ -13,15 +13,17 @@ export const Background = styled.div`
   background: no-repeat;
   background-size: cover;
 
+  margin-top: 14%;
+  width: 100%;
+
   > h1 {
     display: flex;
     flex-direction: center;
     text-align: center;
 
-    font-size: 37px;
+    font-size: 38px;
     color: ${({ theme }) => theme.text};
 
-    margin-top: 30px;
     margin-left: 240px;
   }
 
@@ -30,7 +32,7 @@ export const Background = styled.div`
     flex-direction: center;
     text-align: center;
 
-    font-size: 37px;
+    font-size: 38px;
     color: ${({ theme }) => theme.text};
 
     margin-left: 228px;
@@ -51,7 +53,7 @@ export const Background = styled.div`
   img {
     width: 650px;
 
-    margin-left: 90px;
+    margin-left: 66px;
 
     display: flex;
     align-items: center;
@@ -59,26 +61,21 @@ export const Background = styled.div`
 `;
 
 export const Content = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  margin-top: 18px;
-  margin-left: 60%;
-
   width: 100%;
-  max-width: max-content;
 `;
 
 export const BorderForm = styled.div`
-  padding: 20px 66px;
+  padding: 20px 50px;
 
   background-color: ${({ theme }) => theme.background_light};
 
   border-radius: 40px;
-  border: 7px solid;
+  border: 6px solid;
   border-color: ${({ theme }) => theme.secondary};
 
   form {
@@ -88,11 +85,13 @@ export const BorderForm = styled.div`
     text-align: center;
 
     h1 {
+      font-size: 30px;
       color: ${({ theme }) => theme.primary};
       margin-bottom: 10px;
     }
 
     h2 {
+      font-size: 22px;
       margin-bottom: 36px;
       color: ${({ theme }) => theme.text};
     }

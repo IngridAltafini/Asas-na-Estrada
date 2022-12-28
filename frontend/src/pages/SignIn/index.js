@@ -1,6 +1,7 @@
 import { useCallback, useRef } from 'react';
 
-import { UserAuth } from '../../context/AuthContext';
+import { useAuth } from '../../shared/context/AuthContext';
+import { useToast } from '../../shared/context/ToastContext';
 
 import background from '../../assets/background.jpeg';
 
@@ -9,7 +10,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { HiOutlineMail } from 'react-icons/hi';
 import { BiLockAlt } from 'react-icons/bi';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import * as Yup from 'yup';
 
@@ -17,38 +18,61 @@ import { Form } from '@unform/web';
 
 import { Input, Button } from '../../shared/components';
 
-//import { api } from '../../shared/service';
-
 import getValidationErrors from '../../shared/utils/getValidationErrors';
 
 import { Container, Background, Content, BorderForm } from './styles';
 
 export const SignIn = () => {
   const formRef = useRef(null);
-  const handleSubmit = useCallback(async data => {
-    try {
-      formRef.current.setErrors({});
+  const navigate = useNavigate();
+  const { addToast } = useToast();
 
-      const schema = Yup.object().shape({
-        email: Yup.string().required('E-mail é obrigatório'),
-        password: Yup.string()
-          .min(8, 'Mínimo de 8 caracteres')
-          .required('Senha é obrigatória'),
-      });
+  const { signIn } = useAuth();
 
-      await schema.validate(data, { abortEarly: false });
-    } catch (err) {
-      const errors = getValidationErrors(err);
+  const handleSubmit = useCallback(
+    async data => {
+      try {
+        formRef.current.setErrors({});
 
-      formRef.current.setErrors(errors);
-    }
+        const schema = Yup.object().shape({
+          email: Yup.string().required('E-mail é obrigatório'),
+          password: Yup.string()
+            .min(8, 'Mínimo de 8 caracteres')
+            .required('Senha é obrigatória'),
+        });
 
-    //const response = await api.post('/users', data);
+        await schema.validate(data, { abortEarly: false });
 
-    //console.log(response);
-  }, []);
+        const { email, password } = data;
 
-  const { GoogleSignIn, FacebookSignIn } = UserAuth();
+        await signIn({ email, password });
+
+        addToast({
+          type: 'success',
+          title: 'Sucesso ao logar!',
+          description: 'Aproveite nossa plataforma.',
+        });
+
+        navigate('/home');
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const error = getValidationErrors(err);
+
+          formRef.current.setErrors(error);
+          return;
+        }
+
+        addToast({
+          type: 'error',
+          title: 'Erro ao logar!',
+          description: 'Por favor, verifique seus dados.',
+        });
+      }
+    },
+    [signIn, navigate, addToast]
+  );
+
+  const { GoogleSignIn, FacebookSignIn } = useAuth();
 
   const handleFacebookSignIn = async () => {
     try {

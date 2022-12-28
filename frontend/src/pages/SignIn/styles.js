@@ -8,10 +8,12 @@ export const Container = styled.div`
 `;
 
 export const Background = styled.div`
-  position: relative;
   flex: 1;
   background: no-repeat;
   background-size: cover;
+
+  margin-top: 14%;
+  width: 100%;
 
   > h1 {
     display: flex;
@@ -21,7 +23,6 @@ export const Background = styled.div`
     font-size: 38px;
     color: ${({ theme }) => theme.text};
 
-    margin-top: 30px;
     margin-left: 240px;
   }
 
@@ -51,7 +52,7 @@ export const Background = styled.div`
   > img {
     width: 650px;
 
-    margin-left: 90px;
+    margin-left: 66px;
 
     display: flex;
     align-items: center;
@@ -59,17 +60,12 @@ export const Background = styled.div`
 `;
 
 export const Content = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  margin-top: 38px;
-  margin-left: 61%;
-
   width: 100%;
-  max-width: max-content;
 `;
 
 export const BorderForm = styled.div`

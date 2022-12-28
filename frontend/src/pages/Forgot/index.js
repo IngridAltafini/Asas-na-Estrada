@@ -1,43 +1,75 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import background from '../../assets/background.jpeg';
 
 import { HiOutlineMail } from 'react-icons/hi';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import * as Yup from 'yup';
 
 import { Form } from '@unform/web';
 
-import { Input, Button } from '../../shared/components';
+import { useToast } from '../../shared/context/ToastContext';
+
+import { forgotPassword } from '../../api/Api';
+
+import { Input, Button, Loading } from '../../shared/components';
 
 import getValidationErrors from '../../shared/utils/getValidationErrors';
-
-//import { api } from '../../shared/service';
 
 import { Container, Content, Background, BorderForm } from './styles';
 
 export const Forgot = () => {
   const formRef = useRef(null);
-  const handleSubmit = useCallback(async data => {
-    try {
-      formRef.current.setErrors({});
+  const navigate = useNavigate();
+  const { addToast } = useToast();
 
-      const schema = Yup.object().shape({
-        email: Yup.string().required('E-mail é obrigatório'),
-      });
+  const [isloading, setIsLoading] = useState(false);
 
-      await schema.validate(data, { abortEarly: false });
-    } catch (err) {
-      const errors = getValidationErrors(err);
+  const handleSubmit = useCallback(
+    async data => {
+      try {
+        formRef.current.setErrors({});
 
-      formRef.current.setErrors(errors);
-    }
+        setIsLoading(true);
 
-    //const response = await api.post('/users', data);
-    // console.log(response);
-  }, []);
+        const schema = Yup.object().shape({
+          email: Yup.string().required('E-mail é obrigatório'),
+        });
+
+        await schema.validate(data, { abortEarly: false });
+
+        const { email } = data;
+
+        await forgotPassword(email);
+
+        addToast({
+          type: 'success',
+          title: 'Código enviado!',
+          description: 'Por favor, verifique sua caixa de entrada.',
+        });
+
+        setIsLoading(false);
+
+        navigate('/reset');
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+
+          formRef.current.setErrors(errors);
+          return;
+        }
+
+        addToast({
+          type: 'error',
+          title: 'Código não enviado!',
+          description: 'Por favor, verifique seus dados.',
+        });
+      }
+    },
+    [navigate, addToast]
+  );
 
   return (
     <Container>
@@ -45,7 +77,7 @@ export const Forgot = () => {
         <BorderForm>
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Esqueci senha:</h1>
-            <h2>Realize sua recuperação </h2>
+            <h2>Realize sua redefinição </h2>
             <strong>de senha</strong>
 
             <Input
@@ -55,7 +87,11 @@ export const Forgot = () => {
               placeholder="E-mail"
             />
 
-            <Button type="submit">Enviar código</Button>
+            {isloading ? (
+              <Loading />
+            ) : (
+              <Button type="submit">Enviar código</Button>
+            )}
 
             <Link to="/sign-in">Voltar</Link>
           </Form>

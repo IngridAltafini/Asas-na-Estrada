@@ -13,10 +13,7 @@ export const Content = styled.div`
   align-items: center;
   justify-content: center;
 
-  margin-left: 60px;
-
   width: 100%;
-  max-width: 36%;
 `;
 
 export const BorderForm = styled.div`
@@ -74,6 +71,9 @@ export const Background = styled.div`
   background: no-repeat;
   background-size: cover;
 
+  margin-top: 14%;
+  width: 100%;
+
   > h1 {
     display: flex;
     flex-direction: center;
@@ -82,8 +82,7 @@ export const Background = styled.div`
     font-size: 38px;
     color: ${({ theme }) => theme.text};
 
-    margin-left: 256px;
-    margin-top: 24px;
+    margin-left: 174px;
   }
 
   > p {
@@ -94,7 +93,7 @@ export const Background = styled.div`
     font-size: 38px;
     color: ${({ theme }) => theme.text};
 
-    margin-left: 246px;
+    margin-left: 164px;
     font-weight: 700;
   }
 
@@ -103,14 +102,17 @@ export const Background = styled.div`
     flex-direction: center;
     text-align: center;
 
-    margin-left: 194px;
+    margin-left: 118px;
     font-size: 50px;
     color: ${({ theme }) => theme.primary};
   }
 
   > img {
-    max-width: 100%;
-    margin-left: 78px;
     width: 650px;
+
+    margin: 0 28px;
+
+    display: flex;
+    align-items: center;
   }
 `;

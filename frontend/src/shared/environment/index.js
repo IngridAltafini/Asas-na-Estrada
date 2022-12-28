@@ -14,4 +14,10 @@ export const environment = {
    * KEY Recaptcha key
    */
   RECAPTCHA_KEY: '6Ldci9MUAAAAADjSWcQSB7fh_uD72kvcOTNZfHQH',
+
+  /**
+   * Endereço da API
+   */
+  API_URL: 'http://localhost:3333',
+  APP_NAME: '@pets',
 };

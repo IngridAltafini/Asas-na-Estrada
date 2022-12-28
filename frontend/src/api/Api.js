@@ -32,4 +32,16 @@ const forgotPassword = async email => {
   }
 };
 
-export { login, createUsers, forgotPassword };
+const resetPassword = async ({ token, password }) => {
+  try {
+    const response = await api.patch(`/reset/${token}`, {
+      password,
+    });
+
+    return response.data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+export { login, createUsers, forgotPassword, resetPassword };

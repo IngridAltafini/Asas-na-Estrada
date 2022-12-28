@@ -4,9 +4,9 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 import { HiOutlineMail } from 'react-icons/hi';
 import { TbEdit } from 'react-icons/tb';
-import { BiLockAlt, BiLockOpenAlt } from 'react-icons/bi';
+import { BiLockAlt } from 'react-icons/bi';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import * as Yup from 'yup';
 
@@ -16,40 +16,62 @@ import background from '../../assets/background.jpeg';
 
 import { Input, Button } from '../../shared/components';
 
+import { useToast } from '../../shared/context/ToastContext';
+
 import { environment } from '../../shared/environment';
 
 import getValidationErrors from '../../shared/utils/getValidationErrors';
 
-//import { api } from '../../shared/service';
+import { createUsers } from '../../api/Api';
 
 import { Container, Background, Content, BorderForm, Box } from './styles';
 
 export const SignUp = () => {
   const formRef = useRef(null);
-  const handleSubmit = useCallback(async data => {
-    try {
-      formRef.current.setErrors({});
+  const navigate = useNavigate();
+  const { addToast } = useToast();
 
-      const schema = Yup.object().shape({
-        name: Yup.string().required('Nome é obrigatório'),
-        email: Yup.string().required('E-mail é obrigatório'),
-        password: Yup.string()
-          .min(8, 'Mínimo de 8 caracteres')
-          .required('Senha é obrigatória'),
-        confirmPassword: Yup.string().required('Confirmação obrigatória'),
-      });
+  const handleSubmit = useCallback(
+    async data => {
+      try {
+        formRef.current.setErrors({});
 
-      await schema.validate(data, { abortEarly: false });
-    } catch (err) {
-      const errors = getValidationErrors(err);
+        const schema = Yup.object().shape({
+          name: Yup.string().required('Nome é obrigatório'),
+          email: Yup.string().required('E-mail é obrigatório'),
+          password: Yup.string()
+            .min(8, 'Mínimo de 8 caracteres')
+            .required('Senha é obrigatória'),
+        });
 
-      formRef.current.setErrors(errors);
-    }
+        await schema.validate(data, { abortEarly: false });
 
-    // const response = await api.post('/users', data);
+        await createUsers(data);
 
-    //console.log(response);
-  }, []);
+        addToast({
+          type: 'success',
+          title: 'Usuário criado!',
+          description: 'Cadastro de usuário realizado com sucesso.',
+        });
+
+        navigate('/sign-in');
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+
+          formRef.current.setErrors(errors);
+          return;
+        }
+
+        addToast({
+          type: 'error',
+          title: 'Erro ao cadastrar!',
+          description: 'Por favor, verifique seus dados.',
+        });
+      }
+    },
+    [navigate, addToast]
+  );
 
   return (
     <Container>
@@ -78,12 +100,6 @@ export const SignUp = () => {
               type="password"
               icon={BiLockAlt}
               placeholder="Senha"
-            />
-            <Input
-              name="confirmPassword"
-              type="password"
-              icon={BiLockOpenAlt}
-              placeholder="Confirme sua senha"
             />
 
             <Box>

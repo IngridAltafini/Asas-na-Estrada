@@ -1,19 +1,21 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import background from '../../assets/background.jpeg';
 
 import { TbMessage2Code } from 'react-icons/tb';
-import { BiLockAlt, BiLockOpenAlt } from 'react-icons/bi';
+import { BiLockAlt, BiLockOpen } from 'react-icons/bi';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import * as Yup from 'yup';
 
 import { Form } from '@unform/web';
 
-import { Input, Button } from '../../shared/components';
+import { useToast } from '../../shared/context/ToastContext';
 
-//import { api } from '../../shared/service';
+import { resetPassword } from '../../api/Api';
+
+import { Input, Button, Loading } from '../../shared/components';
 
 import getValidationErrors from '../../shared/utils/getValidationErrors';
 
@@ -21,30 +23,72 @@ import { Container, Content, Background, BorderForm } from './styles';
 
 export const Reset = () => {
   const formRef = useRef(null);
-  const handleSubmit = useCallback(async data => {
-    try {
-      formRef.current.setErrors({});
+  const navigate = useNavigate();
+  const { addToast } = useToast();
 
-      const schema = Yup.object().shape({
-        token: Yup.string()
-          .min(4, 'Mínimo de 4 caracteres')
-          .required('Código obrigatório'),
-        password: Yup.string()
-          .min(8, 'Mínimo de 8 caracteres')
-          .required('Senha é obrigatória'),
-        confirmPassword: Yup.string().required('Confirmação obrigatória'),
-      });
+  const [isloading, setIsLoading] = useState(false);
 
-      await schema.validate(data, { abortEarly: false });
-    } catch (err) {
-      const errors = getValidationErrors(err);
+  const handleSubmit = useCallback(
+    async data => {
+      try {
+        formRef.current.setErrors({});
 
-      formRef.current.setErrors(errors);
-    }
+        setIsLoading(true);
 
-    // const response = await api.post('/users', data);
-    //console.log(response);
-  }, []);
+        const schema = Yup.object().shape({
+          token: Yup.string()
+            .min(4, 'Mínimo de 4 caracteres')
+            .required('Código obrigatório'),
+          password: Yup.string()
+            .min(8, 'Mínimo de 8 caracteres')
+            .required('Senha é obrigatória'),
+          confirmPassword: Yup.string()
+            .min(8, 'Mínimo de 8 caracteres')
+            .required('Confirmação de senha é obrigatória'),
+        });
+
+        await schema.validate(data, { abortEarly: false });
+
+        const { password, confirmPassword, token } = data;
+
+        if (password !== confirmPassword) {
+          addToast({
+            type: 'error',
+            title: 'Senhas não compativeis!',
+            description: 'Por favor, verifique seus dados.',
+          });
+
+          return;
+        }
+
+        await resetPassword({ token, password });
+
+        addToast({
+          type: 'success',
+          title: 'Senha redefinida!',
+          description: 'Redefinição de senha realizada com sucesso.',
+        });
+
+        setIsLoading(false);
+
+        navigate('/sign-in');
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+
+          formRef.current.setErrors(errors);
+          return;
+        }
+
+        addToast({
+          type: 'error',
+          title: 'Erro ao redefinir senha!',
+          description: 'Por favor, verifique seus dados.',
+        });
+      }
+    },
+    [addToast, navigate]
+  );
 
   return (
     <Container>
@@ -72,12 +116,16 @@ export const Reset = () => {
 
             <Input
               name="confirmPassword"
-              icon={BiLockOpenAlt}
+              icon={BiLockOpen}
               type="password"
               placeholder="Confirme sua nova senha"
             />
 
-            <Button type="submit">Atualizar senha</Button>
+            {isloading ? (
+              <Loading />
+            ) : (
+              <Button type="submit">Atualizar senha</Button>
+            )}
 
             <Link to="/forgot">Voltar</Link>
           </Form>

@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable import/no-anonymous-default-export */
 export default {
   primary: '#F33C2A',
   primary_light: 'rgb(243, 60, 42, 0.2)',
