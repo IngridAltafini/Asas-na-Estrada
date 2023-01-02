@@ -12,6 +12,10 @@ const sessionsController = new SessionsController();
 
 sessionsRoutes.post('/', postSessions(), sessionsController.login);
 
-sessionsRoutes.post('/social', postSessionsSocial(), sessionsController.login);
+sessionsRoutes.post(
+  '/social',
+  postSessionsSocial(),
+  sessionsController.loginSocial
+);
 
 module.exports = sessionsRoutes;

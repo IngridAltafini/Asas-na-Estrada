@@ -31,9 +31,9 @@ class SessionService {
   async social(payload) {
     const { email, name, provider_id } = payload;
 
-    let user = await this.usersRepository.checkUsersEmail({ email });
+    let user = await this.usersRepository.checkUsersEmail(email);
     if (!user) {
-      const hashedPassword = await generateHash('1234');
+      const hashedPassword = await generateHash('12345678');
 
       //criar usuario
       user = await this.usersRepository.createUser({
