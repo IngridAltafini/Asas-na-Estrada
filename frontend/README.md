@@ -116,7 +116,7 @@ yarn start
 
 ![ponto](https://github.com/IngridAltafini/Asas-na-Estrada/blob/main/frontend/src/assets/readme/ponto.png)
 
-<h3>Tela de cadastro de encontrar pontos turísticos</h3>
+<h3>Tela de encontrar pontos turísticos</h3>
 
 ![encontre_ponto](https://github.com/IngridAltafini/Asas-na-Estrada/blob/main/frontend/src/assets/readme/encontre_ponto.png)
 
