@@ -1,0 +1,30 @@
+.loading {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 34%;
+
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typewriter 1.5s steps(18) infinite alternate,
+    blink 800ms steps(18) infinite normal;
+}
+  
+  @keyframes typewriter {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 40%;
+    }
+  }
+
+  @keyframes blink {
+    from {
+      border-color: #000;
+    }
+    to {
+      border-color: transparent;
+    }
+  }
+
